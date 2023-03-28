@@ -10,7 +10,7 @@ config:
       enabled: false #default sriov is disabled in AIAB setup
     hugepage:
       enabled: false #should be enabled if dpdk is enabled
-    cniPlugin: macvlan
+    cniPlugin: ipvlan
     ipam: static
     enb:
       subnet: "192.168.120.0/24" #this is your gNB network
