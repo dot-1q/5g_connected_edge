@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: edgeservice
-        image: docker.io/802dot1q/edgeservice:v2.2
+        image: docker.io/802dot1q/edgeservice:v2.3
         resources:
           requests:
             memory: "32Mi"
