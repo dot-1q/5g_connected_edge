@@ -27,7 +27,8 @@ metadata:
     k8s.v1.cni.cncf.io/networks: '[
             { "name": "router-net", "interface": "core-gw", "ips": ["192.168.4.1/24"] },
             { "name": "router-net", "interface": "ran-gw", "ips": ["192.168.100.1/24"] },
-            { "name": "router-net", "interface": "access-gw", "ips": ["192.168.3.1/24"] }
+            { "name": "router-net", "interface": "access-gw", "ips": ["192.168.3.1/24"] },
+            { "name": "router-net", "interface": "upfs-gw", "ips": ["192.168.200.254/24"] }
     ]'
 spec:
   containers:
