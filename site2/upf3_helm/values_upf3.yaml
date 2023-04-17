@@ -24,7 +24,7 @@ config:
       gateway: "192.168.6.1" 
     cfgFiles:
       upf.json:
-        mode: af_xdp  #this mode means no dpdk
+        mode: af_packet  #this mode means no dpdk
         hwcksum: true
         log_level: "trace"
         gtppsc: false #extension header is enabled in 5G. Sending QFI in pdu session extension header
