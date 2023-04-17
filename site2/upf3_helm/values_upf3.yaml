@@ -36,13 +36,6 @@ config:
           #http_port: "8080"
           enable_ue_ip_alloc: false # if true then it means UPF allocates address from below pool
           ue_ip_pool: "172.250.0.0/16" # UE ip pool is used if enable_ue_ip_alloc is set to true
-        slice_rate_limit_config:
-          # Uplink
-          n6_bps: 1000000000 # 1Gbps
-          n6_burst_bytes: 87500000 # 10ms * 1Gbps
-          # Downlink
-          n3_bps: 1000000000 # 1Gbps
-          n3_burst_bytes: 87500000 # 10ms * 1Gbps
 
 service:
   externalIp: "10.10.1.3" 
