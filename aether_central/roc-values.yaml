@@ -80,12 +80,12 @@ prometheus-ace:
       enabled: false
 
 sdcore-adapter-v2-1:
-  defaultTarget: aiab-enterprise
+  defaultTarget: ua
 
 enterprises:
-  - id: aiab-enterprise
-    name: AiaB Enterprise
-    lat: 52.5150
-    long: 13.3885
+  - id: ua
+    name: University of Aveiro 5G Connected Edge
+    lat: 40.6305
+    long: -8.6585
   - id: defaultent
     name: Default Enterprise
