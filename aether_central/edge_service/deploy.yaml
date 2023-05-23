@@ -50,5 +50,5 @@ spec:
   - port: 6000
     targetPort: 8080
     protocol: UDP
-    nodePort: 30001
+    nodePort: 30002
   externalTrafficPolicy: Local
