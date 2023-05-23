@@ -37,7 +37,7 @@ omec-control-plane:
 
     managedByConfigPod:
       enabled: true
-      # syncUrl: http://sdcore-adapter-v2-1.aether-roc.svc:8080/synchronize
+      syncUrl: http://sdcore-adapter-v2-1.aether-roc.svc:8080/synchronize
 
     sctplb:
       deploy: false # if enabled then deploy sctp pod. Once backend code is stable,
@@ -86,6 +86,12 @@ omec-control-plane:
             mongoDBStreamEnable: false # enable/disable MongoDB stream in NRF. Keep it disabled for now.
             nfProfileExpiryEnable: false  # if enabled then remove NF profile if no keepalive received
             nfKeepAliveTime: 60  #default timeout for NF profiles. This value will be sent to registered NF during registration/update process.
+    
+    # Expose WEBUI so that we can add subscribers
+    webui:
+      serviceType: NodePort
+      urlport:
+        nodePort: 30002
 
 
 # Override values for omec-sub-provision helm chart
@@ -102,7 +108,7 @@ omec-sub-provision:
       cfgFiles:
         simapp.yaml:
           configuration:
-            provision-network-slice: true # if enabled then Network Slices configured from simapp
+            provision-network-slice: false # if enabled then Network Slices configured from simapp
             sub-provision-endpt:
               addr: webui.omec.svc.cluster.local  # subscriber configuation endpoint.
             # sub-proxy-endpt:  #this is useful block if subscriber proxy is enabled in the ROC.
@@ -200,7 +206,7 @@ omec-user-plane:
 # 5g-ran-sim Helm Charts values - https://gerrit.opencord.org/sdcore-helm-charts/5g-ran-sim/values.yaml
 
 5g-ran-sim:
-  enable: ${ENABLE_GNBSIM}
+  enable: false
   resources:
     enabled: false
   images:
