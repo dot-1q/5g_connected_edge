@@ -12,16 +12,17 @@ config:
       enabled: false #should be enabled if dpdk is enabled
     cniPlugin: macvlan
     ipam: static
+    routes:
+      - to: "10.255.32.152" #This is the IP of my internet facing interface (ens3) . Replace this address with yours
+        via: 169.254.1.1
     enb:
       subnet: "10.10.1.0/24" #this is your gNB network
     access:
       iface: "ens4"
       ip: "192.168.252.3/24" #New IP address for UPF2 access interface
-      gateway: "192.168.252.1"
     core:
       iface: "ens4"
       ip: "192.168.250.3/24" #New IP address for UPF2 core interface
-      gateway: "192.168.250.1"
     cfgFiles:
       upf.json:
         mode: af_packet  #this mode means no dpdk
