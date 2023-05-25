@@ -19,7 +19,7 @@ config:
       ip: "192.168.252.3/24" #New IP address for UPF2 access interface
     core:
       iface: "ens4"
-      ip: "192.168.250.1/24" #New IP address for UPF2 core interface
+      ip: "192.168.250.3/24" #New IP address for UPF2 core interface
     cfgFiles:
       upf.json:
         mode: af_packet  #this mode means no dpdk
