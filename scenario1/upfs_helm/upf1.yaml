@@ -17,15 +17,18 @@ config:
     access:
       iface: "ens4"
       ip: "192.168.252.3/24" #New IP address for UPF2 access interface
+      gateway: "192.168.252.1"
     core:
       iface: "ens4"
       ip: "192.168.250.3/24" #New IP address for UPF2 core interface
+      gateway: "192.168.250.1"
     cfgFiles:
       upf.json:
         mode: af_packet  #this mode means no dpdk
         hwcksum: true
         log_level: "trace"
         gtppsc: true #extension header is enabled in 5G. Sending QFI in pdu session extension header
+        measure_upf: false #enable packet processing time
         cpiface:
           dnn: "internet" #keep it matching with Slice dnn
           hostname: "upf"
