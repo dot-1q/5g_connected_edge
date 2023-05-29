@@ -12,6 +12,9 @@ config:
       enabled: false #should be enabled if dpdk is enabled
     cniPlugin: macvlan
     ipam: static
+    routes:
+      - to: 172.3.0.0/16
+        via: 192.168.110.10
     enb:
       subnet: "192.168.110.0/24" #this is your gNB network
     access:
