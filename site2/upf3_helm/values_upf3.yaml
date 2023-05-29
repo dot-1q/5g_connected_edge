@@ -13,8 +13,8 @@ config:
     cniPlugin: macvlan
     ipam: static
     routes:
-      - to: 172.3.0.0/16
-        via: 192.168.110.10
+      - to: "10.255.32.232" #This is the IP of my internet facing interface (ens3) . Replace this address with yours
+        via: 169.254.1.1
     enb:
       subnet: "192.168.110.0/24" #this is your gNB network
     access:
