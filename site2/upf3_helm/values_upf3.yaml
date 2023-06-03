@@ -25,7 +25,7 @@ config:
     cfgFiles:
       upf.json:
         mode: af_packet  #this mode means no dpdk
-        hwcksum: true
+        hwcksum: false
         log_level: "trace"
         gtppsc: false #extension header is enabled in 5G. Sending QFI in pdu session extension header
         enable_notify_bess: false
