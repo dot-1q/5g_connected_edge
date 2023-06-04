@@ -36,7 +36,7 @@ config:
         gtppsc: true #extension header is enabled in 5G. Sending QFI in pdu session extension header
         enable_notify_bess: false
         measure_upf: false #enable packet processing time
-        workers: 2
+        workers: 4
         cpiface:
           dnn: "internet" #keep it matching with Slice dnn
           hostname: "upf"
