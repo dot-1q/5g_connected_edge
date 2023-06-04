@@ -15,7 +15,7 @@ config:
     sriov:
       enabled: false #default sriov is disabled in AIAB setup
     hugepage:
-      enabled: false #should be enabled if dpdk is enabled
+      enabled: true #should be enabled if dpdk is enabled
     cniPlugin: macvlan
     ipam: static
     enb:
@@ -53,17 +53,17 @@ config:
           slice_rate_limit_config:
             # Uplink
             n6_bps: 100000000 # 1Gbps
-            n6_burst_bytes: 12500000 # 10ms * 1Gbps
+            n6_burst_bytes: 1250000 # 10ms * 1Gbps
             # Downlink
             n3_bps: 100000000 # 1Gbps
-            n3_burst_bytes: 12500000 # 10ms * 1Gbps
+            n3_burst_bytes: 1250000 # 10ms * 1Gbps
           qci_qos_config:
             - qci: 0 # Fallback QCI
               cbs: 50000
               ebs: 50000
               pbs: 50000
               burst_duration_ms: 5
-              priority: 7
+              priority: 1
 
 service:
   externalIp: "10.10.1.3" 
