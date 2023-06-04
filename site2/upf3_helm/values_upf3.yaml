@@ -46,4 +46,4 @@ config:
                   # Default global rate limits. Can be changed at runtime via BESS gRPC.
 
 service:
-  externalIp: "10.10.1.73" 
+  externalIp: "10.10.1.3" 
