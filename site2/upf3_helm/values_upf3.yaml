@@ -37,12 +37,12 @@ config:
         enable_notify_bess: false
         measure_upf: false #enable packet processing time
         workers: 1
-        max_sessions: 10000
+        max_sessions: 5000
         table_sizes:
-          pdrLookup: 10000
-          appQERLookup: 40000
-          sessionQERLookup: 20000
-          farLookup: 30000
+          pdrLookup: 20000
+          appQERLookup: 8000
+          sessionQERLookup: 2000
+          farLookup: 3000
         cpiface:
           dnn: "internet" #keep it matching with Slice dnn
           hostname: "upf"
@@ -52,17 +52,17 @@ config:
                   # Default global rate limits. Can be changed at runtime via BESS gRPC.
           slice_rate_limit_config:
             # Uplink
-            n6_bps: 1000000000 # 1Gbps
+            n6_bps: 100000000 # 1Gbps
             n6_burst_bytes: 12500000 # 10ms * 1Gbps
             # Downlink
-            n3_bps: 1000000000 # 1Gbps
+            n3_bps: 100000000 # 1Gbps
             n3_burst_bytes: 12500000 # 10ms * 1Gbps
           qci_qos_config:
             - qci: 0 # Fallback QCI
               cbs: 50000
               ebs: 50000
               pbs: 50000
-              burst_duration_ms: 10
+              burst_duration_ms: 5
               priority: 7
 
 service:
