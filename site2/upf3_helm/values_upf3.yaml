@@ -15,7 +15,7 @@ config:
     sriov:
       enabled: false #default sriov is disabled in AIAB setup
     hugepage:
-      enabled: true #should be enabled if dpdk is enabled
+      enabled: false #should be enabled if dpdk is enabled
     cniPlugin: macvlan
     ipam: static
     enb:
