@@ -37,6 +37,12 @@ config:
         enable_notify_bess: false
         measure_upf: false #enable packet processing time
         workers: 1
+        max_sessions: 10000
+        table_sizes:
+          pdrLookup: 10000
+          appQERLookup: 40000
+          sessionQERLookup: 20000
+          farLookup: 30000
         cpiface:
           dnn: "internet" #keep it matching with Slice dnn
           hostname: "upf"
