@@ -1,5 +1,5 @@
 resources:
-  enabled: true
+  enabled: false
   bess:
     requests:
       cpu: 1
