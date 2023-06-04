@@ -1,6 +1,6 @@
 enable: true
 resources:
-  enabled: false
+  enabled: true
 images:
   repository: "registry.opennetworking.org/docker.io/"
 config:
