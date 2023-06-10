@@ -5,7 +5,7 @@ images:
 nodeSelectors:
   enabled: true
   upf:
-    label: site2upf
+    label: siteupf
     value: upf3
 config:
   upf:
