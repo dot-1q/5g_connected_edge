@@ -1,14 +1,12 @@
 resources:
   enabled: false
-  bess:
-    requests:
-      cpu: 1
-      memory: 1Gi
-    limits:
-      cpu: 1
-      memory: 1Gi
 images:
   repository: "registry.opennetworking.org/docker.io/"
+nodeSelectors:
+  enabled: true
+  upf:
+    label: site2upf
+    value: upf3
 config:
   upf:
     name: "oaisim"
