@@ -2,11 +2,6 @@ resources:
   enabled: false
 images:
   repository: "registry.opennetworking.org/docker.io/"
-nodeSelectors:
-  enabled: true
-  upf:
-    label: siteupf
-    value: upf3
 config:
   upf:
     name: "oaisim"
