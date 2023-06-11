@@ -10,7 +10,7 @@ global:
       consensus:
         enabled: true
         clusters: 1
-        replicas: 3
+        replicas: 1
         partitions: 30
 
 import:
@@ -87,5 +87,3 @@ enterprises:
     name: University of Aveiro 5G Connected Edge
     lat: 40.6305
     long: -8.6585
-  - id: defaultent
-    name: Default Enterprise
