@@ -140,18 +140,18 @@ omec-sub-provision:
               ip-domain-name: "pool1"
               ip-domain-expanded:
                 dnn: internet
-                dns-primary: "1.1.1.1" # Change this as per your need. This value is sent to UE
-                mtu: 1400 # This value is sent to UE/Mobile/Subscriber during Subscriber PDU Session Est
+                dns-primary: "8.8.8.8" # Change this as per your need. This value is sent to UE
+                mtu: 1450 # This value is sent to UE/Mobile/Subscriber during Subscriber PDU Session Est
                 ue-ip-pool: "172.1.0.0/16" # IP address pool for subscribers
                 ue-dnn-qos:
                   dnn-mbr-downlink: 200000000 #ue level downlink qos
-                  dnn-mbr-uplink:   200000000  #ue level uplink qos
+                  dnn-mbr-uplink: 200000000  #ue level uplink qos
                   bitrate-unit: bps #unit for qos rates mentioned above
                   traffic-class:  #default bearer QCI/ARP. These values are not used in 5G as such
                     name: "platinum"
-                    qci: 9
+                    qci: 3
                     arp: 6
-                    pdb: 300
+                    pdb: 100
                     pelr: 6
               site-info: "aiab"
 
