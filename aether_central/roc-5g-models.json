@@ -77,8 +77,8 @@
                         ],
                         "ip-domain": "ua-pool1",
                         "mbr": {
-                            "uplink": 20000000,
-                            "downlink": 20000000
+                            "uplink": 200000000,
+                            "downlink": 200000000
                         },
                         "traffic-class": "class-1"
                     },
@@ -97,8 +97,8 @@
                         ],
                         "ip-domain": "ua-pool2",
                         "mbr": {
-                            "uplink": 20000000,
-                            "downlink": 20000000
+                            "uplink": 200000000,
+                            "downlink": 200000000
                         },
                         "traffic-class": "class-1"
                     }
@@ -108,18 +108,18 @@
                         "admin-status": "ENABLE",
                         "display-name": "IP pool 1",
                         "dnn": "internet",
-                        "dns-primary": "1.1.1.1",
+                        "dns-primary": "8.8.8.8",
                         "ip-domain-id": "ua-pool1",
-                        "mtu": 1400,
+                        "mtu": 1450,
                         "subnet": "172.1.0.0/16"
                     },
                     {
                         "admin-status": "ENABLE",
                         "display-name": "IP pool 2",
                         "dnn": "internet",
-                        "dns-primary": "1.1.1.1",
+                        "dns-primary": "8.8.8.8",
                         "ip-domain-id": "ua-pool2",
-                        "mtu": 1400,
+                        "mtu": 1450,
                         "subnet": "172.2.0.0/16"
                     }
                 ],
@@ -158,8 +158,8 @@
                         "sst": "1",
                         "upf": "upf1",
                         "mbr": {
-                            "uplink": 10000000,
-                            "downlink": 5000000
+                            "uplink": 200000000,
+                            "downlink": 200000000
                         },
                         "priority-traffic-rule": []
                     }
@@ -220,8 +220,8 @@
                         ],
                         "ip-domain": "ua-pool3",
                         "mbr": {
-                            "uplink": 20000000,
-                            "downlink": 20000000
+                            "uplink": 200000000,
+                            "downlink": 200000000
                         },
                         "traffic-class": "class-1"
                     }
@@ -231,9 +231,9 @@
                         "admin-status": "ENABLE",
                         "display-name": "IP pool 3",
                         "dnn": "internet",
-                        "dns-primary": "1.1.1.1",
+                        "dns-primary": "8.8.8.8",
                         "ip-domain-id": "ua-pool3",
-                        "mtu": 1400,
+                        "mtu": 1450,
                         "subnet": "172.3.0.0/16"
                     }
                 ],
@@ -302,8 +302,8 @@
                         ],
                         "ip-domain": "ua-pool4",
                         "mbr": {
-                            "uplink": 20000000,
-                            "downlink": 20000000
+                            "uplink": 200000000,
+                            "downlink": 200000000
                         },
                         "traffic-class": "class-1"
                     }
@@ -313,9 +313,9 @@
                         "admin-status": "ENABLE",
                         "display-name": "IP pool 4",
                         "dnn": "internet",
-                        "dns-primary": "1.1.1.1",
+                        "dns-primary": "8.8.8.8",
                         "ip-domain-id": "ua-pool4",
-                        "mtu": 1400,
+                        "mtu": 1450,
                         "subnet": "172.4.0.0/16"
                     }
                 ],
