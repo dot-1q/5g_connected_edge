@@ -25,11 +25,8 @@ config:
       upf.json:
         mode: af_packet  #this mode means no dpdk
         hwcksum: true
-        log_level: "trace"
+        measure_upf: false
         gtppsc: true #extension header is enabled in 5G. Sending QFI in pdu session extension header
-        enable_notify_bess: false
-        measure_upf: false #enable packet processing time
-        workers: 1
         cpiface:
           dnn: "internet" #keep it matching with Slice dnn
           hostname: "upf"
