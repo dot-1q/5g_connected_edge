@@ -134,11 +134,11 @@
                 ],
                 "upf": [
                     {
-                        "address": "192.168.200.1",
+                        "address": "10.10.1.2",
                         "display-name": "UPF 1",
                         "upf-id": "upf1",
-                        "port": 8805,
-                        "config-endpoint": "http://192.168.200.1:8080"
+                        "port": 30001,
+                        "config-endpoint": "http://10.10.1.2:30010"
                     }
                 ],
                 "slice": [
