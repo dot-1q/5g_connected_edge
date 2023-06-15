@@ -6,9 +6,6 @@ images:
 config:
   upf:
     name: "oaisim"
-    # UPF-HTTP Port
-    prometheus:
-      nodePort: 30010
     sriov:
       enabled: false #default sriov is disabled in AIAB setup
     hugepage:
@@ -29,7 +26,6 @@ config:
       upf.json:
         mode: af_packet  #this mode means no dpdk
         hwcksum: true
-        log_level: "trace"
         gtppsc: true #extension header is enabled in 5G. Sending QFI in pdu session extension header
         measure_upf: false #enable packet processing time
         cpiface:
@@ -38,6 +34,6 @@ config:
           #http_port: "8080"
           enable_ue_ip_alloc: false # if true then it means UPF allocates address from below pool
           ue_ip_pool: "172.250.0.0/16" # UE ip pool is used if enable_ue_ip_alloc is set to true
+
 service:
-  type: NodePort
-  nodePort: 30001
+  externalIp: "192.168.200.1"
