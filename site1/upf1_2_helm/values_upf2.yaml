@@ -6,6 +6,9 @@ images:
 config:
   upf:
     name: "oaisim"
+    # UPF-HTTP Port
+    prometheus:
+      nodePort: 30020
     sriov:
       enabled: false #default sriov is disabled in AIAB setup
     hugepage:
@@ -35,5 +38,7 @@ config:
           #http_port: "7000"
           enable_ue_ip_alloc: false # if true then it means UPF allocates address from below pool
           ue_ip_pool: "172.250.0.0/16" # UE ip pool is used if enable_ue_ip_alloc is set to true
+
 service:
-  externalIp: "192.168.200.2"
+  type: NodePort
+  nodePort: 30002
