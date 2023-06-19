@@ -25,8 +25,7 @@ config:
       upf.json:
         mode: af_packet  #this mode means no dpdk
         hwcksum: true
-        log_level: "trace"
-        gtppsc: false #extension header is enabled in 5G. Sending QFI in pdu session extension header
+        gtppsc: true #extension header is enabled in 5G. Sending QFI in pdu session extension header
         measure_upf: false #enable packet processing time
         cpiface:
           dnn: "internet" #keep it matching with Slice dnn
