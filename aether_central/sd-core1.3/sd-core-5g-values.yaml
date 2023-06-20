@@ -121,9 +121,9 @@ omec-sub-provision:
             - ueId-start: "208990000000000"
               ueId-end: "208990000000007"
               plmnId: "20899"
-              opc: "981d464c7c52eb6e5036234984ad0bcf"
+              opc: "28a182edf3c70667a90a66c619cec91f"
               op: ""
-              key: "5122250214c33e723a5dd523fc145fc0"
+              key: "fd4b1e644a2dd4d2c8c03cf5fe12238d"
               sequenceNumber: "16f3b3f70fc2"
             # Configure More than one device Group as per your need
             device-groups:
