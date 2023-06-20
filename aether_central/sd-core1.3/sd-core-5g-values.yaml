@@ -118,9 +118,9 @@ omec-sub-provision:
             # below block configures the subscribers and their security details.
             # you can have any number of subscriber ranges
             subscribers:
-            - ueId-start: "208930000000000"
-              ueId-end: "208930000000007"
-              plmnId: "20893"
+            - ueId-start: "208990000000000"
+              ueId-end: "208990000000007"
+              plmnId: "20899"
               opc: "981d464c7c52eb6e5036234984ad0bcf"
               op: ""
               key: "5122250214c33e723a5dd523fc145fc0"
@@ -140,12 +140,12 @@ omec-sub-provision:
               ip-domain-name: "pool1"
               ip-domain-expanded:
                 dnn: internet
-                dns-primary: "1.1.1.1" # Change this as per your need. This value is sent to UE
-                mtu: 1400 # This value is sent to UE/Mobile/Subscriber during Subscriber PDU Session Est
+                dns-primary: "8.8.8.8" # Change this as per your need. This value is sent to UE
+                mtu: 1450 # This value is sent to UE/Mobile/Subscriber during Subscriber PDU Session Est
                 ue-ip-pool: "172.1.0.0/16" # IP address pool for subscribers
                 ue-dnn-qos:
-                  dnn-mbr-downlink: 100000000 #ue level downlink qos
-                  dnn-mbr-uplink:   100000000  #ue level uplink qos
+                  dnn-mbr-downlink: 200000000 #ue level downlink qos
+                  dnn-mbr-uplink:   200000000  #ue level uplink qos
                   bitrate-unit: bps #unit for qos rates mentioned above
                   traffic-class:  #default bearer QCI/ARP. These values are not used in 5G as such
                     name: "platinum"
