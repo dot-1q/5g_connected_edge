@@ -8,7 +8,7 @@
                 "site-id": "site1",
                 "imsi-definition": {
                     "mcc": "208",
-                    "mnc": "93",
+                    "mnc": "99",
                     "enterprise": 0,
                     "format": "CCCNNEESSSSSSSS"
                 },
@@ -43,22 +43,22 @@
                     {
                         "sim-id": "ua-sim-0",
                         "display-name": "UE 0 Sim",
-                        "imsi": "208930000000000"
+                        "imsi": "208990000000000"
                     },
                     {
                         "sim-id": "ua-sim-1",
                         "display-name": "UE 1 Sim",
-                        "imsi": "208930000000001"
+                        "imsi": "208990000000001"
                     },
                     {
                         "sim-id": "ua-sim-2",
                         "display-name": "UE 2 Sim",
-                        "imsi": "208930000000002"
+                        "imsi": "208990000000002"
                     },
                     {
                         "sim-id": "ua-sim-3",
                         "display-name": "UE 3 Sim",
-                        "imsi": "208930000000003"
+                        "imsi": "208990000000003"
                     }
                 ],
                 "device-group": [
@@ -171,7 +171,7 @@
                 "site-id": "site2",
                 "imsi-definition": {
                     "mcc": "208",
-                    "mnc": "93",
+                    "mnc": "99",
                     "enterprise": 0,
                     "format": "CCCNNEESSSSSSSS"
                 },
@@ -196,12 +196,12 @@
                     {
                         "sim-id": "ua-sim-4",
                         "display-name": "UE 4 Sim",
-                        "imsi": "208930000000004"
+                        "imsi": "208990000000004"
                     },
                     {
                         "sim-id": "ua-sim-5",
                         "display-name": "UE 5 Sim",
-                        "imsi": "208930000000005"
+                        "imsi": "208990000000005"
                     }
                 ],
                 "device-group": [
@@ -253,7 +253,7 @@
                 "site-id": "site3",
                 "imsi-definition": {
                     "mcc": "208",
-                    "mnc": "93",
+                    "mnc": "99",
                     "enterprise": 0,
                     "format": "CCCNNEESSSSSSSS"
                 },
@@ -278,12 +278,12 @@
                     {
                         "sim-id": "ua-sim-6",
                         "display-name": "UE 6 Sim",
-                        "imsi": "208930000000006"
+                        "imsi": "208990000000006"
                     },
                     {
                         "sim-id": "ua-sim-7",
                         "display-name": "UE 7 Sim",
-                        "imsi": "208930000000007"
+                        "imsi": "208990000000007"
                     }
                 ],
                 "device-group": [
