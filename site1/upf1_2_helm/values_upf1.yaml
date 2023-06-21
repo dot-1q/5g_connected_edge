@@ -16,8 +16,8 @@ config:
       subnet: "10.10.100.0/24" #this is your gNB network
     access:
       iface: "ens4"
-      ip: "192.168.3.1/24" #New IP address for UPF3 access interface
-      gateway: "10.255.32.156"
+      ip: "192.168.3.10/24" #New IP address for UPF3 access interface
+      gateway: "192.168.3.1"
     core:
       iface: "ens4"
       ip: "192.168.4.10/24" #New IP address for UPF3 core interface
