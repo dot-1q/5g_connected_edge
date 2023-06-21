@@ -17,10 +17,10 @@ config:
     access:
       iface: "ens4"
       ip: "192.168.3.1/24" #New IP address for UPF3 access interface
-      gateway: "192.168.3.1"
+      gateway: "10.255.32.156"
     core:
       iface: "ens4"
-      ip: "192.168.4.1/24" #New IP address for UPF3 core interface
+      ip: "192.168.4.10/24" #New IP address for UPF3 core interface
       gateway: "192.168.4.1" 
     cfgFiles:
       upf.json:
