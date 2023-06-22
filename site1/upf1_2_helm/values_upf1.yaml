@@ -15,11 +15,11 @@ config:
       #subnet: "192.168.94.0/24" #this is your gNB network
       subnet: "10.255.32.0/24" #this is your gNB network
     access:
-      iface: "enp1s0f0"
+      iface: "enp1s0f1"
       ip: "192.168.3.10/24" #New IP address for UPF3 access interface
       gateway: "192.168.3.1"
     core:
-      iface: "enp1s0f0"
+      iface: "enp1s0f1"
       ip: "192.168.4.10/24" #New IP address for UPF3 core interface
       gateway: "192.168.4.1" 
     cfgFiles:
