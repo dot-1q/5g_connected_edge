@@ -118,25 +118,25 @@ omec-sub-provision:
             # below block configures the subscribers and their security details.
             # you can have any number of subscriber ranges
             subscribers:
-            - ueId-start: "208930000000000"
-              ueId-end: "208930000000007"
-              plmnId: "20893"
-              opc: "981d464c7c52eb6e5036234984ad0bcf"
+            - ueId-start: "208990000000000"
+              ueId-end: "208990000000007"
+              plmnId: "20899"
+              opc: "28a182edf3c70667a90a66c619cec91f"
               op: ""
-              key: "5122250214c33e723a5dd523fc145fc0"
+              key: "fd4b1e644a2dd4d2c8c03cf5fe12238d"
               sequenceNumber: "16f3b3f70fc2"
             # Configure More than one device Group as per your need
             device-groups:
             - name:  "ua_campus_users"
               imsis:
-                - "208930000000000"
-                - "208930000000001"
-                - "208930000000002"
-                - "208930000000003"
-                - "208930000000004"
-                - "208930000000005"
-                - "208930000000006"
-                - "208930000000007"
+                - "208990000000000"
+                - "208990000000001"
+                - "208990000000002"
+                - "208990000000003"
+                - "208990000000004"
+                - "208990000000005"
+                - "208990000000006"
+                - "208990000000007"
               ip-domain-name: "pool1"
               ip-domain-expanded:
                 dnn: internet
