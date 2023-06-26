@@ -27,16 +27,6 @@
                         "device-id": "ua-ue-1",
                         "display-name": "UE 1",
                         "sim-card": "ua-sim-1"
-                    },
-                    {
-                        "device-id": "ua-ue-2",
-                        "display-name": "UE 2",
-                        "sim-card": "ua-sim-2"
-                    },
-                    {
-                        "device-id": "ua-ue-3",
-                        "display-name": "UE 3",
-                        "sim-card": "ua-sim-3"
                     }
                 ],
                 "sim-card": [
@@ -49,16 +39,6 @@
                         "sim-id": "ua-sim-1",
                         "display-name": "UE 1 Sim",
                         "imsi": "208990000000001"
-                    },
-                    {
-                        "sim-id": "ua-sim-2",
-                        "display-name": "UE 2 Sim",
-                        "imsi": "208990000000002"
-                    },
-                    {
-                        "sim-id": "ua-sim-3",
-                        "display-name": "UE 3 Sim",
-                        "imsi": "208990000000003"
                     }
                 ],
                 "device-group": [
@@ -81,26 +61,6 @@
                             "downlink": 200000000
                         },
                         "traffic-class": "class-1"
-                    },
-                    {
-                        "display-name": "device group 2",
-                        "device-group-id": "device-group-2",
-                        "device": [
-                            {
-                                "device-id": "ua-ue-2",
-                                "enable": true
-                            },
-                            {
-                                "device-id": "ua-ue-3",
-                                "enable": true
-                            }
-                        ],
-                        "ip-domain": "ua-pool2",
-                        "mbr": {
-                            "uplink": 200000000,
-                            "downlink": 200000000
-                        },
-                        "traffic-class": "class-1"
                     }
                 ],
                 "ip-domain": [
@@ -112,15 +72,6 @@
                         "ip-domain-id": "ua-pool1",
                         "mtu": 1450,
                         "subnet": "172.1.0.0/16"
-                    },
-                    {
-                        "admin-status": "ENABLE",
-                        "display-name": "IP pool 2",
-                        "dnn": "internet",
-                        "dns-primary": "8.8.8.8",
-                        "ip-domain-id": "ua-pool2",
-                        "mtu": 1450,
-                        "subnet": "172.2.0.0/16"
                     }
                 ],
                 "small-cell": [
@@ -134,11 +85,11 @@
                 ],
                 "upf": [
                     {
-                        "address": "10.10.1.2",
+                        "address": "192.168.94.18",
                         "display-name": "UPF 1",
                         "upf-id": "upf1",
-                        "port": 30001,
-                        "config-endpoint": "http://10.10.1.2:30010"
+                        "port": 8805,
+                        "config-endpoint": "http://192.168.94.18:8080"
                     }
                 ],
                 "slice": [
@@ -182,6 +133,16 @@
                 },
                 "device": [
                     {
+                        "device-id": "ua-ue-2",
+                        "display-name": "UE 2",
+                        "sim-card": "ua-sim-2"
+                    },
+                    {
+                        "device-id": "ua-ue-3",
+                        "display-name": "UE 3",
+                        "sim-card": "ua-sim-3"
+                    },
+                    {
                         "device-id": "ua-ue-4",
                         "display-name": "UE 4",
                         "sim-card": "ua-sim-4"
@@ -194,6 +155,16 @@
                 ],
                 "sim-card": [
                     {
+                        "sim-id": "ua-sim-2",
+                        "display-name": "UE 2 Sim",
+                        "imsi": "208990000000002"
+                    },
+                    {
+                        "sim-id": "ua-sim-3",
+                        "display-name": "UE 3 Sim",
+                        "imsi": "208990000000003"
+                    },
+                    {
                         "sim-id": "ua-sim-4",
                         "display-name": "UE 4 Sim",
                         "imsi": "208990000000004"
@@ -205,6 +176,26 @@
                     }
                 ],
                 "device-group": [
+                    {
+                        "display-name": "device group 2",
+                        "device-group-id": "device-group-2",
+                        "device": [
+                            {
+                                "device-id": "ua-ue-2",
+                                "enable": true
+                            },
+                            {
+                                "device-id": "ua-ue-3",
+                                "enable": true
+                            }
+                        ],
+                        "ip-domain": "ua-pool2",
+                        "mbr": {
+                            "uplink": 200000000,
+                            "downlink": 200000000
+                        },
+                        "traffic-class": "class-1"
+                    },
                     {
                         "display-name": "device group 3",
                         "device-group-id": "device-group-3",
@@ -227,6 +218,15 @@
                     }
                 ],
                 "ip-domain": [
+                    {
+                        "admin-status": "ENABLE",
+                        "display-name": "IP pool 2",
+                        "dnn": "internet",
+                        "dns-primary": "8.8.8.8",
+                        "ip-domain-id": "ua-pool2",
+                        "mtu": 1450,
+                        "subnet": "172.2.0.0/16"
+                    },
                     {
                         "admin-status": "ENABLE",
                         "display-name": "IP pool 3",
