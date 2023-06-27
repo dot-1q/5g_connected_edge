@@ -119,7 +119,7 @@ omec-sub-provision:
             # you can have any number of subscriber ranges
             subscribers:
             - ueId-start: "208990000000000"
-              ueId-end: "208990000000007"
+              ueId-end: "208990000000099"
               plmnId: "20899"
               opc: "28a182edf3c70667a90a66c619cec91f"
               op: ""
