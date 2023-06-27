@@ -12,7 +12,7 @@ config:
     cniPlugin: macvlan
     ipam: static
     enb:
-      subnet: "192.168.94.68/30" #this is your gNB network
+      subnet: "192.168.94.18/32" #this is your gNB network
       #subnet: "10.255.32.0/24" #this is your gNB network
     access:
       iface: "enp1s0f1"
