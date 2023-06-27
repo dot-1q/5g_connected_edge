@@ -85,11 +85,11 @@
                 ],
                 "upf": [
                     {
-                        "address": "192.168.94.18",
+                        "address": "192.168.94.14",
                         "display-name": "UPF 1",
                         "upf-id": "upf1",
                         "port": 8805,
-                        "config-endpoint": "http://192.168.94.18:8080"
+                        "config-endpoint": "http://192.168.94.14:8080"
                     }
                 ],
                 "slice": [
