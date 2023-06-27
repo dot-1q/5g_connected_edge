@@ -14,11 +14,11 @@ config:
     enb:
       subnet: "10.255.32.168/32" #this is your gNB network
     access:
-      iface: "ens3"
+      iface: "ens4"
       ip: "192.168.7.10/24" #New IP address for UPF3 access interface
       gateway: "192.168.7.1"
     core:
-      iface: "ens3"
+      iface: "ens4"
       ip: "192.168.8.10/24" #New IP address for UPF3 core interface
       gateway: "192.168.8.1" 
     cfgFiles:
