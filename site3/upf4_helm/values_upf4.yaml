@@ -43,4 +43,4 @@ config:
             n3_burst_bytes: 12500000 # 10ms * 1Gbps
 
 service:
-  externalIp: "10.10.1.4" 
+  externalIp: "10.255.32.231" 
