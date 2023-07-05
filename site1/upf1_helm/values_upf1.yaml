@@ -43,4 +43,5 @@ config:
             n3_burst_bytes: 12500000 # 10ms * 1Gbps
 
 service:
-  externalIp: "192.168.94.14"
+  type: NodePort
+  nodePort: 30010
