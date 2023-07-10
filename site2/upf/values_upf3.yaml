@@ -15,11 +15,11 @@ config:
       subnet: "10.255.32.179/32" #this is your gNB network
     access:
       iface: "ens4"
-      ip: "192.168.5.20/24" #New IP address for UPF3 access interface
+      ip: "192.168.5.10/24" #New IP address for UPF3 access interface
       gateway: "192.168.5.1"
     core:
       iface: "ens4"
-      ip: "192.168.6.20/24" #New IP address for UPF3 core interface
+      ip: "192.168.6.10/24" #New IP address for UPF3 core interface
       gateway: "192.168.6.1" 
     cfgFiles:
       upf.json:
@@ -41,6 +41,3 @@ config:
             # Downlink
             n3_bps: 2000000000 # 2Gbbps
             n3_burst_bytes: 12500000 # 10ms * 1Gbps
-
-service:
-  externalIp: "10.255.32.232"
