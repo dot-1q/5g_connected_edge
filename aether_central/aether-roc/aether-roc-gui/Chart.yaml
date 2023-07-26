@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: 2021-present Open Networking Foundation <info@opennetworking.org>
+#
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: v2
+name: aether-roc-gui
+description: Aether ROC Graphical User Interface
+kubeVersion: ">=1.15.0"
+type: application
+version: 2.1.19
+appVersion: v0.10.1
+keywords:
+  - aether
+  - roc
+  - gui
+home: https://www.opennetworking.org/aether/
+maintainers:
+  - name: Aether Ops team
+    email: support@opennetworking.org
