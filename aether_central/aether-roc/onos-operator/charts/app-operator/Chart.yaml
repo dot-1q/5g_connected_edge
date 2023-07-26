@@ -1,0 +1,13 @@
+apiVersion: v2
+appVersion: v0.5.1
+description: µONOS App Operator
+home: https://onosproject.org
+keywords:
+- onos
+- sdn
+kubeVersion: '>=1.17.0'
+maintainers:
+- email: support@opennetworking.org
+  name: ONOS Support
+name: app-operator
+version: 0.5.5

@@ -1,0 +1,394 @@
+# SPDX-FileCopyrightText: 2022-present Intel Corporation
+# SPDX-FileCopyrightText: 2020-present Open Networking Foundation <info@opennetworking.org>
+#
+# SPDX-License-Identifier: Apache-2.0
+
+# Default values for all Aether Helm charts.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+global:
+  fullnameOverride: "onos"
+  nameOverride: ""
+  image:
+    registry: ""
+    tag: ""
+  atomix:
+    store:
+      consensus:
+        enabled: true
+        name: ""
+        image:
+          registry: ""
+          repository: atomix/consensus-node
+          tag: ""
+          pullPolicy: ""
+          pullSecrets: []
+        replicas: 3
+        partitions: 30
+        config:
+          server: {}
+          raft: {}
+          logging:
+            loggers:
+              root:
+                level: info
+                output:
+                  stdout:
+                    sink: stdout
+            sinks:
+              stdout:
+                stdout: {}
+        log:
+          storageClass: ""
+          resources:
+            requests:
+              storage: 1Gi
+        securityContext: {}
+
+import:
+  onos-topo:
+    enabled: true
+  onos-config:
+    enabled: true
+  onos-cli:
+    enabled: true
+  aether-roc-api:
+    enabled: true
+  aether-roc-gui:
+    v2-0:
+      enabled: false
+    v2-1:
+      enabled: true
+  sdcore-adapter:
+    v2-0:
+      enabled: false
+    v2-1:
+      enabled: true
+  sdcore-prom-kafka:
+    enabled: false
+  subscriber-proxy:
+    enabled: true
+  sdcore-test-dummy:
+    enabled: true
+  grafana:
+    enabled: true #also enable the proxy below
+  prometheus:
+    acc:
+      enabled: true # controls its plproxy too
+    amp:
+      enabled: true # controls its plproxy too
+    ace:
+      enabled: true
+  prom-label-proxy:
+    acc:
+      enabled: true
+    amp:
+      enabled: true
+  aether-mock-exporter:
+    enabled: true
+
+# ONOS-TOPO
+onos-topo:
+  atomix:
+    store:
+      consensus:
+        enabled: false
+
+# ONOS-GUI
+onos-gui: {}
+
+# ONOS-CLI
+onos-cli: {}
+
+# Aether ROC API
+aether-roc-api: {}
+
+# Aether ROC GUI
+aether-roc-gui-v2:
+  grafana:
+    proxyEnabled: true
+    service: "{{ .Release.Name }}-grafana" # the grafana hostname - use FQDN for other namespaces
+  prometheus:
+    acc:
+      proxyEnabled: true
+      service: "{{ .Release.Name }}-prom-label-proxy-acc"
+      protocol: http
+      port: 8080
+    amp:
+      proxyEnabled: true
+      service: "{{ .Release.Name }}-prom-label-proxy-amp"
+      protocol: http
+      port: 8080
+    site:
+      - name: ace1
+        service: "{{ .Release.Name }}-prometheus-ace-server"
+        protocol: http
+        port: 80
+
+aether-roc-gui-v2-1:
+  feature:
+    aether: true
+    sdnfabric: false
+  grafana:
+    proxyEnabled: true
+    service: "{{ .Release.Name }}-grafana" # the grafana hostname - use FQDN for other namespaces
+  prometheus:
+    acc:
+      proxyEnabled: true
+      service: "{{ .Release.Name }}-prom-label-proxy-acc"
+      protocol: http
+      port: 8080
+    amp:
+      proxyEnabled: true
+      service: "{{ .Release.Name }}-prom-label-proxy-amp"
+      protocol: http
+      port: 8080
+    site:
+      - name: ace1
+        service: "{{ .Release.Name }}-prometheus-ace-server"
+        protocol: http
+        port: 80
+
+# SD-Core Adapter
+sdcore-adapter-v2-0:
+  prometheusEnabled: false
+  partialUpdateEnabled: true
+
+sdcore-adapter-v2-1:
+  prometheusEnabled: false
+  partialUpdateEnabled: true  
+
+# Subscriber Proxy
+subscriber-proxy:
+  prometheusEnabled: false
+
+# Prom label Proxy
+prom-label-proxy-amp:
+  prometheusEnabled: false
+  config:
+    upstream: "http://{{ .Release.Name }}-prometheus-amp-server"
+
+prom-label-proxy-acc:
+  prometheusEnabled: false
+  config:
+    upstream: "http://{{ .Release.Name }}-prometheus-acc-server"
+
+grafana:
+  sidecar:
+    dashboards:
+       enabled: true
+       label: grafana_dashboard
+       labelValue: aether-roc-gui
+    datasources:
+       enabled: true
+       label: grafana_datasource
+       labelValue: aether-roc-gui
+  source:
+  - name: acc
+    protocol: http
+    service: "{{ .Release.Name }}-prometheus-acc-server"
+    port: 80
+  - name: amp
+    protocol: http
+    service: "{{ .Release.Name }}-prometheus-amp-server"
+    port: 80
+  - name: acme-chicago
+    protocol: http
+    service: "{{ .Release.Name }}-prometheus-ace-server"
+    port: 80
+  - name: starbucks-newyork
+    protocol: http
+    service: "{{ .Release.Name }}-prometheus-ace-server"
+    port: 80
+  - name: starbucks-seattle
+    protocol: http
+    service: "{{ .Release.Name }}-prometheus-ace-server"
+    port: 80
+  grafana.ini:
+    log:
+      level: debug
+    server:
+      domain: aether-roc-gui:8183
+      root_url: "%(protocol)s://%(domain)s/grafana/"
+      serve_from_sub_path: true
+    security:
+      allow_embedding: true
+    auth:
+     disable_login_form: true
+     oauth_auto_login: true
+    auth.anonymous:
+      enabled: false
+      hide_version: false
+# Disabled other auth types for the moment - see aether-roc-gui/docs/grafana.md
+    auth.proxy:
+      enabled: false
+      header_name: X-WEBAUTH-USER
+      header_property: username
+      auto_sign_up: true
+      enable_login_token: true
+    auth.jwt:
+      enabled: false
+      header_name: X-JWT-Assertion
+      username_claim: name
+      email_claim: email
+      jwk_set_url: "https://keycloak.opennetworking.org/auth/realms/master/protocol/openid-connect/certs"
+      cache_ttl: 60m
+    auth.generic_oauth:
+      enabled: true
+      client_id: aether-roc-gui
+#      client_secret: YWV0aGVyLXJvYy1ndWkK
+      scopes: "openid profile email groups"
+      empty_scopes: false
+      auth_url: "http://k3u-keycloak:5557/auth/realms/master/protocol/openid-connect/auth"
+      token_url: "http://k3u-keycloak:5557/auth/realms/master/protocol/openid-connect/token"
+      api_url: "http://k3u-keycloak:5557/auth/realms/master/protocol/openid-connect/userinfo"
+      allowed_domains: opennetworking.org
+      allow_sign_up: true
+      name: KeyCloak
+
+prometheus-acc:
+  prometheus-pushgateway:
+    enabled: false
+  prometheus-node-exporter:
+    enabled: false
+  kube-state-metrics:
+    enabled: false
+  alertmanager:
+    enabled: false
+  serverFiles:
+    alerting_rules.yml:
+     groups:
+       - name: UeAlerts
+         rules:
+           - alert: UeThroughputLow
+             expr: ue_throughput < 9000
+             for: 1m
+             labels:
+               severity: info
+             annotations:
+               description: 'UE {{ $labels.id }} on VCS {{ $labels.slice }} throughput has been low for more than 1 minutes.'
+               summary: 'UE {{ $labels.id }} on VCS {{ $labels.slice }} throughput low'
+           - alert: UeLatencyHigh
+             expr: ue_latency > 8
+             for: 1m
+             labels:
+               severity: info
+             annotations:
+               description: 'UE {{ $labels.id }} on VCS {{ $labels.slice }} latency has been high for more than 1 minutes.'
+               summary: 'UE {{ $labels.id }} on VCS {{ $labels.slice }} latency high'
+       - name: VcsAlerts
+         rules:
+           - alert: VcsThroughputLow
+             expr: vcs_throughput < 9000
+             for: 1m
+             labels:
+               severity: info
+             annotations:
+               description: 'VCS {{ $labels.vcs_id }} throughput has been low for more than 1 minutes.'
+               summary: 'VCS {{ $labels.vcs_id }} throughput low'
+           - alert: VcsLatencyHigh
+             expr: vcs_latency > 30
+             for: 1m
+             labels:
+               severity: warn
+             annotations:
+               description: 'VCS {{ $labels.vcs_id }} latency has been high for more than 1 minutes.'
+               summary: 'VCS {{ $labels.vcs_id }} latency high'
+           - alert: VcsJitterHigh
+             expr: vcs_jitter > 8
+             for: 1m
+             labels:
+               severity: page
+             annotations:
+               description: 'VCS {{ $labels.vcs_id }} jitter has been high for more than 1 minutes.'
+               summary: 'VCS {{ $labels.vcs_id }} jitter high'
+    prometheus.yml:
+      scrape_configs:
+        - job_name: aether-mock-exporter
+          scrape_interval: 2s
+          static_configs:
+            - targets:
+                - aether-mock-exporter:2112
+
+prometheus-amp:
+  prometheus-pushgateway:
+    enabled: false
+  prometheus-node-exporter:
+    enabled: false
+  kube-state-metrics:
+    enabled: false
+  alertmanager:
+    enabled: false
+  serverFiles:
+    prometheus.yml:
+      scrape_configs:
+        - job_name: aether-mock-exporter
+          scrape_interval: 2s
+          static_configs:
+            - targets:
+                - aether-mock-exporter:2112
+
+prometheus-ace:
+  prometheus-pushgateway:
+    enabled: false
+  prometheus-node-exporter:
+    enabled: false
+  kube-state-metrics:
+    enabled: true
+  alertmanager:
+    enabled: false
+  serverFiles:
+    prometheus.yml:
+      scrape_configs:
+        - job_name: aether-mock-exporter
+          scrape_interval: 2s
+          static_configs:
+            - targets:
+                - aether-mock-exporter:2112
+        - job_name: kube-state-metrics
+          scrape_interval: 2s
+          static_configs:
+            - targets:
+                - kube-state-metrics:8080
+
+# SD-Core Test Dummy
+# proxy_pass has to be added or nginx will not log the $request_body
+sdcore-test-dummy:
+  service:
+    type: ClusterIP
+  existingServerBlockConfigmap: "{{ .Release.Name }}-sdcore-test-dummy"
+
+# ONOS-CONFIG
+onos-config:
+  atomix:
+    store:
+      consensus:
+        enabled: false
+  modelPlugins:
+    - name: aether-2
+      image: onosproject/aether-2.0.x:2.0.12-aether-2.0.x
+      endpoint: localhost
+      port: 5152
+    - name: aether-2-1
+      image: onosproject/aether-2.1.x:2.1.14-aether-2.1.x
+      endpoint: localhost
+      port: 5153
+
+  openpolicyagent:
+    enabled: false
+    regoConfigMap: opa-rbac
+
+enterprises:
+  - id: starbucks
+    name: Starbucks Enterprise
+    lat: 47.581115
+    long: -122.335692
+  - id: acme
+    name: ACME Enterprise
+    lat: 41.974568
+    long: -87.782062
+  - id: defaultent
+    name: Default Enterprise
+    lat: 37.453017
+    long: -122.180708
