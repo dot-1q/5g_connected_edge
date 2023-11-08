@@ -1,3 +1,8 @@
+nodeSelectors:
+  enabled: false
+  upf:
+    label: site
+    value: site2
 resources:
   enabled: false
 images:
