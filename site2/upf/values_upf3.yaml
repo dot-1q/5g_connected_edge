@@ -1,5 +1,5 @@
 nodeSelectors:
-  enabled: false
+  enabled: true
   upf:
     label: site
     value: site2
