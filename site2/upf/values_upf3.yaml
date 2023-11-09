@@ -7,6 +7,8 @@ resources:
   enabled: false
 images:
   repository: "registry.opennetworking.org/docker.io/"
+  tags:
+    tools: busybox:stable
 config:
   upf:
     name: "oaisim"
