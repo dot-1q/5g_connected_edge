@@ -1,7 +1,7 @@
 nodeSelectors:
   enabled: true
   upf:
-    label: node
+    label: site
     value: site2
 resources:
   enabled: false
