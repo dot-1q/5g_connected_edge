@@ -19,7 +19,7 @@ config:
     cniPlugin: macvlan
     ipam: static
     enb:
-      subnet: "10.255.32.179/32" #this is your gNB network
+      subnet: "10.10.110.0/24" #this is your gNB network
     access:
       iface: "ens4"
       ip: "192.168.5.10/24" #New IP address for UPF3 access interface
