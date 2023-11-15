@@ -1,7 +1,14 @@
+nodeSelectors:
+  enabled: true
+  upf:
+    label: site
+    value: site1
 resources:
   enabled: false
 images:
   repository: "registry.opennetworking.org/docker.io/"
+  tags:
+    tools: busybox:stable
 config:
   upf:
     name: "oaisim"
@@ -25,8 +32,9 @@ config:
       upf.json:
         mode: af_packet  #this mode means no dpdk
         hwcksum: true
+        measure_upf: true
+        measure_flow: true
         gtppsc: true #extension header is enabled in 5G. Sending QFI in pdu session extension header
-        measure_upf: false
         cpiface:
           dnn: "internet" #keep it matching with Slice dnn
           hostname: "upf"
@@ -41,3 +49,6 @@ config:
             # Downlink
             n3_bps: 2000000000 # 2Gbbps
             n3_burst_bytes: 12500000 # 10ms * 1Gbps
+
+servicemonitor:
+  enabled: true
