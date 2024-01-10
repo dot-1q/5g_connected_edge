@@ -159,13 +159,17 @@ omec-sub-provision:
 # omec-user-plane Helm Charts values - https://gerrit.opencord.org/sdfabric-helm-charts/bess-upf/values.yaml
 
 omec-user-plane:
-  enable: false
+  enable: true
+  upf:
+    label: site
+    value: site2
   resources:
     enabled: false
   images:
     repository: "registry.opennetworking.org/docker.io/"
     # uncomment below section to add update bess image tag
-    #tags:
+    tags:
+      tools: busybox:stable
     #  bess: <bess image tag>
     #  pfcpiface: <pfcp image tag>
   config:
@@ -178,21 +182,22 @@ omec-user-plane:
       #can be any other plugin as well, remember this plugin dictates how IP address are assigned.
       cniPlugin: macvlan
       ipam: static
-      routes:
-        - to: ${NODE_IP}
-          via: 169.254.1.1
       enb:
-        subnet: ${RAN_SUBNET} #this is your gNB network
+        subnet: "10.10.110.0/24" #this is your gNB network
       access:
-        iface: ${DATA_IFACE}
-        # ip: 192.168.252.3/24   # this is the default in the Helm chart
+        iface: "ens4"
+        ip: "192.168.5.10/24" #New IP address for UPF3 access interface
+        gateway: "192.168.5.1"
       core:
-        iface: ${DATA_IFACE}
-        # ip: 192.168.250.3/24   # this is the default in the Helm chart
+        iface: "ens4"
+        ip: "192.168.6.10/24" #New IP address for UPF3 core interface
+        gateway: "192.168.6.1" 
       cfgFiles:
         upf.json:
           mode: af_packet  #this mode means no dpdk
           hwcksum: true
+          measure_upf: true
+          measure_flow: true
           log_level: "trace"
           gtppsc: true #extension header is enabled in 5G. Sending QFI in pdu session extension header
           cpiface:
