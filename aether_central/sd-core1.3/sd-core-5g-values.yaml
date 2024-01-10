@@ -160,9 +160,11 @@ omec-sub-provision:
 
 omec-user-plane:
   enable: true
-  upf:
-    label: site
-    value: site2
+  nodeSelectors:
+    enabled: true
+    upf:
+      label: site
+      value: site2
   resources:
     enabled: false
   images:
