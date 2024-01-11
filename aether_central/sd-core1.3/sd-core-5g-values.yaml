@@ -159,7 +159,7 @@ omec-sub-provision:
 # omec-user-plane Helm Charts values - https://gerrit.opencord.org/sdfabric-helm-charts/bess-upf/values.yaml
 
 omec-user-plane:
-  enable: true
+  enable: false
   nodeSelectors:
     enabled: true
     upf:
