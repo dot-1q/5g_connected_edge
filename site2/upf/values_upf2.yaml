@@ -2,7 +2,7 @@ nodeSelectors:
   enabled: true
   upf:
     label: site
-    value: site1
+    value: site2
 resources:
   enabled: false
 images:
@@ -19,21 +19,21 @@ config:
     cniPlugin: macvlan
     ipam: static
     enb:
-      subnet: "192.168.10.0/24" #this is your gNB network
+      subnet: "10.10.120.0/24" #this is your gNB network
     access:
-      iface: "enp1s0f1"
-      ip: "192.168.3.20/24" #New IP address for UPF3 access interface
-      gateway: "192.168.3.1"
+      iface: "ens4"
+      ip: "192.168.7.10/24" #New IP address for UPF3 access interface
+      gateway: "192.168.7.1"
     core:
-      iface: "enp1s0f1"
-      ip: "192.168.4.20/24" #New IP address for UPF3 core interface
-      gateway: "192.168.4.1"
+      iface: "ens4"
+      ip: "192.168.8.10/24" #New IP address for UPF3 core interface
+      gateway: "192.168.8.1" 
     cfgFiles:
       upf.json:
         mode: af_packet  #this mode means no dpdk
         hwcksum: true
-        measure_upf: true
-        measure_flow: true
+        measure_upf: true #enable packet processing time
+        measure_flow: true #enable per UE session monitoring
         gtppsc: true #extension header is enabled in 5G. Sending QFI in pdu session extension header
         cpiface:
           dnn: "internet" #keep it matching with Slice dnn
@@ -49,6 +49,6 @@ config:
             # Downlink
             n3_bps: 2000000000 # 2Gbbps
             n3_burst_bytes: 12500000 # 10ms * 1Gbps
-
+            
 servicemonitor:
   enabled: true
