@@ -22,12 +22,12 @@ config:
       subnet: "10.10.110.0/24" #this is your gNB network
     access:
       iface: "ens4"
-      ip: "192.168.5.10/24" #New IP address for UPF3 access interface
-      gateway: "192.168.5.1"
+      ip: "192.168.3.10/24" #New IP address for UPF3 access interface
+      gateway: "192.168.3.1"
     core:
       iface: "ens4"
-      ip: "192.168.6.10/24" #New IP address for UPF3 core interface
-      gateway: "192.168.6.1" 
+      ip: "192.168.4.10/24" #New IP address for UPF3 core interface
+      gateway: "192.168.4.1" 
     cfgFiles:
       upf.json:
         mode: af_packet  #this mode means no dpdk
