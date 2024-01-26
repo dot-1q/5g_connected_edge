@@ -9,6 +9,8 @@ images:
   repository: "registry.opennetworking.org/docker.io/"
   tags:
     tools: busybox:stable
+    bess: "omecproject/upf-epc-bess:master-latest"
+    pfcpiface: "omecproject/upf-epc-pfcpiface:master-latest"
 config:
   upf:
     name: "oaisim"
