@@ -23,9 +23,9 @@ spec:
 {{- if eq .Values.config.metricfunc.serviceType "NodePort" }}
 {{- if .Values.config.metricfunc.prometheus.nodePort }}
     nodePort: {{ .Values.config.metricfunc.prometheus.nodePort }}
-  ports:
+{{- end }}
+{{- end }}
   - name: apiEndpoint
-    port: {{ .Values.config.metricfunc.apiEndpoint.port }}
-{{- end }}
-{{- end }}
+  port: {{ .Values.config.metricfunc.apiEndpoint.port }}
+  protocol: TCP
 {{- end }}

@@ -693,7 +693,7 @@ config:
     deploy: false
     serviceType: ClusterIP
     prometheus:
-      port: 9088
+      port: 9089
     apiEndpoint:
       port: 9301
     cfgFiles:
