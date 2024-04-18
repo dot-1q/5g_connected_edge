@@ -27,7 +27,7 @@
             "device-id": "ua-ue-1",
             "display-name": "UE 1",
             "sim-card": "ua-sim-1"
-          },
+          }
         ],
         "sim-card": [
           {
@@ -39,7 +39,7 @@
             "sim-id": "ua-sim-1",
             "display-name": "UE 1 Sim",
             "imsi": "208990000000001"
-          },
+          }
         ],
         "device-group": [
           {
@@ -83,7 +83,7 @@
               "downlink": 200000000
             },
             "traffic-class": "class-1"
-          },
+          }
         ],
         "ip-domain": [
           {
@@ -155,7 +155,7 @@
             "priority-traffic-rule": []
           }
         ]
-      },
+      }
     ],
 
     "traffic-class-2.1.0": [
