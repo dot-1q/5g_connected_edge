@@ -1,3 +1,6 @@
 [submodule "aether_central/sd-core1.3/aether_central/sd-core1.3/sdcore-helm-charts"]
 	path = aether_central/sd-core1.3/aether_central/sd-core1.3/sdcore-helm-charts
 	url = https://github.com/dot-1q/sdcore-helm-charts
+[submodule "aether_central/sd-core1.3/sdcore-helm-charts"]
+	path = aether_central/sd-core1.3/sdcore-helm-charts
+	url = https://github.com/dot-1q/sdcore-helm-charts
