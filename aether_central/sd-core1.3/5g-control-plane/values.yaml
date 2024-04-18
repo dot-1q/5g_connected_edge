@@ -110,7 +110,7 @@ resources:
       memory: 1Gi
 
 kafka:
-  deploy: false
+  deploy: true
   fullnameOverride: kafka
   zookeeper:
     persistence:
