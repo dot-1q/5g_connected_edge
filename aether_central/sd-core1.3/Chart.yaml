@@ -29,7 +29,7 @@ dependencies:
   - name: 5g-control-plane
     version: 1.0.0
     # repository: https://charts.aetherproject.org
-    repository: file://sdcore-helm-charts/5g-control-plane
+    repository: file://5g-control-plane
     condition: 5g-control-plane.enable5G
   - name: bess-upf
     version: 1.0.0

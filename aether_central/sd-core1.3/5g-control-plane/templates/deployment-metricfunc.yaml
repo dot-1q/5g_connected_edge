@@ -1,0 +1,82 @@
+{{/*
+# Copyright 2022-present Open Networking Foundation
+
+# SPDX-License-Identifier: Apache-2.0
+*/}}
+{{- if .Values.config.metricfunc.deploy }}
+{{ tuple "metricfunc" . | include "5g-control-plane.service_account" }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metricfunc
+  labels:
+{{ tuple "metricfunc" . | include "5g-control-plane.metadata_labels" | indent 4 }}
+spec:
+  replicas: 1
+  #serviceName: metricfunc-headless
+  selector:
+    matchLabels:
+{{ tuple "metricfunc" . | include "5g-control-plane.metadata_labels" | indent 6 }}
+  template:
+    metadata:
+      labels:
+{{ tuple "metricfunc" . | include "5g-control-plane.metadata_labels" | indent 8 }}
+    {{- with .Values.config.metricfunc.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    spec:
+      serviceAccountName: metricfunc
+    {{- if hasKey .Values.images "pullSecrets" }}
+      imagePullSecrets:
+{{ toYaml .Values.images.pullSecrets | indent 8 }}
+    {{- end }}
+      containers:
+      - name: metricfunc
+        image: {{ .Values.images.repository }}{{ .Values.images.tags.metricfunc }}
+        imagePullPolicy: {{ .Values.images.pullPolicy }}
+      {{- if .Values.config.coreDump.enabled }}
+        securityContext:
+          runAsUser: 0
+      {{- end }}
+        stdin: true
+        tty: true
+        command: [ "/metricfunc/script/metricfunc-run.sh" ]
+        env:
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+      {{- if .Values.resources.enabled }}
+        resources:
+{{ toYaml .Values.resources.metricfunc | indent 10 }}
+      {{- end }}
+        volumeMounts:
+        - name: run-script
+          mountPath: /metricfunc/script/metricfunc-run.sh
+          subPath: metricfunc-run.sh
+        - name: metricfunc-config
+          mountPath: /metricfunc/config
+      {{- if .Values.config.coreDump.enabled }}
+        - name: coredump
+          mountPath: /tmp/coredump
+      {{- end }}
+      volumes:
+      - name: run-script
+        configMap:
+          name: metricfunc
+          defaultMode: 493
+      - name: metricfunc-config
+        configMap:
+          name: metricfunc
+          defaultMode: 493
+    {{- if .Values.config.coreDump.enabled }}
+      - name: host-rootfs
+        hostPath:
+          path: /
+      - name: coredump
+        hostPath:
+          path: {{ .Values.config.coreDump.path }}
+    {{- end }}
+{{- end }}

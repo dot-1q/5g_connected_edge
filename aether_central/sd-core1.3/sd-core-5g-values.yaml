@@ -41,11 +41,6 @@ omec-control-plane:
       # this option will be enabled by default
     metricfunc:
       deploy: true
-      serviceType: NodePort
-      prometheus:
-        nodePort: 30010
-      apiEndpoint:
-        nodePort: 30011
     # Change AMF config here if required Most of the AMF config comes from Slice APIs
     # but some of the config is directly provided  through helm chart
     amf:
