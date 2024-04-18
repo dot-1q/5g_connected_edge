@@ -26,6 +26,6 @@ spec:
 {{- end }}
 {{- end }}
   - name: apiEndpoint
-  port: {{ .Values.config.metricfunc.apiEndpoint.port }}
-  protocol: TCP
+    port: {{ .Values.config.metricfunc.apiEndpoint.port }}
+    protocol: TCP
 {{- end }}
