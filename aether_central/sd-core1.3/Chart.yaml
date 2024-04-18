@@ -1,24 +1,44 @@
 ---
-# SPDX-FileCopyrightText: 2022-present Intel Corporation
 # Copyright 2020-present Open Networking Foundation
-
 #
 # SPDX-License-Identifier: Apache-2.0
+#
+
 
 apiVersion: v2
-description: SD-Core 5G control plane services
-name: 5g-control-plane
+name: sd-core
+description: SD-Core control plane services
 icon: https://guide.opencord.org/logos/cord.svg
-
+type: application
 version: 1.0.0
-
+home: https://opennetworking.org/sd-core/
+maintainers:
+  - name: SD-Core Support
+    email: support@opennetworking.org
 dependencies:
-  - name: mongodb
-    version: 13.6.4
-    repository: https://charts.bitnami.com/bitnami
-    condition: mongodb.deploy
-  - name: kafka
-    version: 20.0.4
-    repository: https://charts.bitnami.com/bitnami
-    condition: kafka.deploy
-
+  - name: omec-control-plane
+    version: 0.13.0
+    repository: https://charts.aetherproject.org
+    #repository: "file://../omec-control-plane"
+    condition: omec-control-plane.enable4G
+  - name: omec-sub-provision
+    version: 1.0.0
+    repository: https://charts.aetherproject.org
+    #repository: "file://../omec-sub-provision"
+    condition: omec-sub-provision.enable
+  - name: 5g-control-plane
+    version: 1.0.0
+    # repository: https://charts.aetherproject.org
+    repository: file://5g-control-plane
+    condition: 5g-control-plane.enable5G
+  - name: bess-upf
+    version: 1.0.0
+    repository: https://charts.aetherproject.org
+    #repository: "file://../bess-upf"
+    alias: omec-user-plane
+    condition: omec-user-plane.enable
+  - name: 5g-ran-sim
+    version: 1.0.0
+    repository: https://charts.aetherproject.org
+    #repository: "file://../5g-ran-sim"
+    condition: 5g-ran-sim.enable
