@@ -27,6 +27,7 @@ omec-control-plane:
     enabled: false
   config:
     mongodb:
+      deploy: true
       name: free5gc
       url: mongodb://mongodb-arbiter-headless #enable if cluster deployment required
     managedByConfigPod:
@@ -40,7 +41,11 @@ omec-control-plane:
       # this option will be enabled by default
     metricfunc:
       deploy: true
-      serviceType: ClusterIP
+      serviceType: NodePort
+      prometheus:
+        port: 30010
+      apiEndpoint:
+        port: 30011
     # Change AMF config here if required Most of the AMF config comes from Slice APIs
     # but some of the config is directly provided  through helm chart
     amf:
