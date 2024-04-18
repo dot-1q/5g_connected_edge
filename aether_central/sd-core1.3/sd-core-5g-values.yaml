@@ -43,9 +43,9 @@ omec-control-plane:
       deploy: true
       serviceType: NodePort
       prometheus:
-        port: 30010
+        nodePort: 30010
       apiEndpoint:
-        port: 30011
+        nodePort: 30011
     # Change AMF config here if required Most of the AMF config comes from Slice APIs
     # but some of the config is directly provided  through helm chart
     amf:
