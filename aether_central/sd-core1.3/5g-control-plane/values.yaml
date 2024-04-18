@@ -20,7 +20,6 @@ images:
     metricfunc: omecproject/metricfunc:rel-1.4.0
     upfadapter: omecproject/5gc-smf:rel-1.4.0
   pullPolicy: IfNotPresent
-
 resources:
   enabled: false
   sctplb:
@@ -100,7 +99,6 @@ resources:
     limits:
       cpu: 1
       memory: 1Gi
-
   metricfunc:
     requests:
       cpu: 1
@@ -108,7 +106,6 @@ resources:
     limits:
       cpu: 1
       memory: 1Gi
-
 kafka:
   deploy: false
   fullnameOverride: kafka
@@ -119,9 +116,8 @@ kafka:
     enabled: false
   nfKafka:
     urls:
-      - "kafka-headless:9092"
-    topic: "sdcore-nf-data-source"
-
+      - kafka-headless:9092
+    topic: sdcore-nf-data-source
 mongodb:
   deploy: true
   fullnameOverride: mongodb
@@ -134,11 +130,10 @@ mongodb:
   #clusterDomain: cluster.local
   architecture: replicaset
   replicaCount: 1
-
 config:
-  managedByConfigPod:      # config comes from helm by default, if enabled true, then discard
-    enabled: true          # helm chart config and use the config from config Pod
-    syncUrl: ""            # Get the config from adapater in case control plane is down
+  managedByConfigPod: # config comes from helm by default, if enabled true, then discard
+    enabled: true # helm chart config and use the config from config Pod
+    syncUrl: "" # Get the config from adapater in case control plane is down
   useExistingConfigMap: false
   imagePath: /free5gc
   coreDump:
@@ -151,9 +146,9 @@ config:
     authUrl: mongodb://mongodb-arbiter-headless
   grpc:
     golog_verbosity: "99"
-    severity: "info"
-    trace: "all"
-    verbosity: "debug"
+    severity: info
+    trace: all
+    verbosity: debug
   logger:
     # network function
     AMF:
@@ -180,7 +175,7 @@ config:
     N3IWF:
       debugLevel: info
       ReportCaller: false
-  # library
+      # library
     NAS:
       debugLevel: info
       ReportCaller: false
@@ -220,7 +215,7 @@ config:
     PathUtil:
       debugLevel: info
       ReportCaller: false
-  # webui
+      # webui
     WEBUI:
       debugLevel: info
       ReportCaller: false
@@ -242,8 +237,8 @@ config:
       path: /
       pathType: Prefix
       # extraHosts:
-        # - host: free5gc.local
-        #   path: /
+      # - host: free5gc.local
+      #   path: /
     cfgFiles:
       # https://github.com/free5gc/free5gc/blob/main/config/webuicfg.yaml
       webuicfg.conf:
@@ -284,17 +279,17 @@ config:
             - nudm-pp
           sbi:
             scheme: http
-            bindingIPv4: "0.0.0.0"
+            bindingIPv4: 0.0.0.0
             registerIPv4: udm
             tls:
               log: free5gc/udmsslkey.log
               pem: free5gc/support/TLS/udm.pem
               key: free5gc/support/TLS/udm.key
           keys:
-                udmProfileAHNPublicKey: 5a8d38864820197c3394b92613b20b91633cbd897119273bf8e4a6f4eec0a650
-                udmProfileAHNPrivateKey: c53c22208b61860b06c62e5406a7b330c2b577aa5558981510d128247d38bd1d
-                udmProfileBHNPublicKey: 0472DA71976234CE833A6907425867B82E074D44EF907DFB4B3E21C1C2256EBCD15A7DED52FCBB097A4ED250E036C7B9C8C7004C4EEDC4F068CD7BF8D3F900E3B4
-                udmProfileBHNPrivateKey: F1AB1074477EBCC7F554EA1C5FC368B1616730155E0041AC447D6301975FECDA
+            udmProfileAHNPublicKey: 5a8d38864820197c3394b92613b20b91633cbd897119273bf8e4a6f4eec0a650
+            udmProfileAHNPrivateKey: c53c22208b61860b06c62e5406a7b330c2b577aa5558981510d128247d38bd1d
+            udmProfileBHNPublicKey: 0472DA71976234CE833A6907425867B82E074D44EF907DFB4B3E21C1C2256EBCD15A7DED52FCBB097A4ED250E036C7B9C8C7004C4EEDC4F068CD7BF8D3F900E3B4
+            udmProfileBHNPrivateKey: F1AB1074477EBCC7F554EA1C5FC368B1616730155E0041AC447D6301975FECDA
   udr:
     deploy: true
     #podAnnotations:
@@ -321,7 +316,7 @@ config:
                 mnc: "88"
           sbi:
             scheme: http
-            bindingIPv4: "0.0.0.0"
+            bindingIPv4: 0.0.0.0
             registerIPv4: udr
   pcf:
     deploy: true
@@ -342,7 +337,7 @@ config:
           nrfUri: http://nrf:29510
           sbi:
             scheme: http
-            bindingIPv4: "0.0.0.0"
+            bindingIPv4: 0.0.0.0
             registerIPv4: pcf
           defaultBdtRefId: BdtPolicyId-
           plmnList:
@@ -381,7 +376,7 @@ config:
           webuiUri: webui:9876
           sbi:
             scheme: http
-            bindingIPv4: "0.0.0.0"
+            bindingIPv4: 0.0.0.0
             registerIPv4: nssf
           serviceNameList:
             - nnssf-nsselection
@@ -425,9 +420,9 @@ config:
           dispatcherLogs: info
           clientdiscLogs: info
         configuration:
-          type: "grpc"
+          type: grpc
           services:
-            - uri: "amf-headless"
+            - uri: amf-headless
           ngapIpList:
             - 0.0.0.0
   amf:
@@ -463,17 +458,17 @@ config:
           enableNrfCaching: false
           debugProfilePort: 5001
           kafkaInfo:
-            brokerUri: "kafka-headless"
+            brokerUri: kafka-headless
             brokerPort: 9092
-            topicName: "sdcore-data-source-amf"
+            topicName: sdcore-data-source-amf
           ngapIpList:
-            - "0.0.0.0"
+            - 0.0.0.0
           amfName: AMF
           nrfUri: http://nrf:29510
           webuiUri: webui:9876
           sbi:
             scheme: http
-            bindingIPv4: "0.0.0.0"
+            bindingIPv4: 0.0.0.0
             registerIPv4: amf
           serviceNameList:
             - namf-comm
@@ -518,33 +513,33 @@ config:
             mpsi: 0 # MPS indicator (uinteger, range: 0~1)
             emcN3: 0 # Emergency service support indicator for Non-3GPP access (uinteger, range: 0~1)
             mcsi: 0 # MCS indicator (uinteger, range: 0~1)
-          t3502Value: 720  # timer value (seconds) at UE side
+          t3502Value: 720 # timer value (seconds) at UE side
           t3512Value: 3600 # timer value (seconds) at UE side
           non3gppDeregistrationTimerValue: 3240 # timer value (seconds) at UE side
           # retransmission timer for paging message
           t3513:
-            enable: true     # true or false
-            expireTime: 6s   # default is 6 seconds
+            enable: true # true or false
+            expireTime: 6s # default is 6 seconds
             maxRetryTimes: 4 # the max number of retransmission
           # retransmission timer for NAS Deregistration Request message
           t3522:
-            enable: true     # true or false
-            expireTime: 6s   # default is 6 seconds
+            enable: true # true or false
+            expireTime: 6s # default is 6 seconds
             maxRetryTimes: 4 # the max number of retransmission
           # retransmission timer for NAS Registration Accept message
           t3550:
-            enable: true     # true or false
-            expireTime: 6s   # default is 6 seconds
+            enable: true # true or false
+            expireTime: 6s # default is 6 seconds
             maxRetryTimes: 4 # the max number of retransmission
           # retransmission timer for NAS Authentication Request/Security Mode Command message
           t3560:
-            enable: true     # true or false
-            expireTime: 6s   # default is 6 seconds
+            enable: true # true or false
+            expireTime: 6s # default is 6 seconds
             maxRetryTimes: 4 # the max number of retransmission
           # retransmission timer for NAS Notification message
           t3565:
-            enable: true     # true or false
-            expireTime: 6s   # default is 6 seconds
+            enable: true # true or false
+            expireTime: 6s # default is 6 seconds
             maxRetryTimes: 4 # the max number of retransmission
   nrf:
     deploy: true
@@ -567,7 +562,7 @@ config:
           webuiUri: webui:9876
           sbi:
             scheme: http
-            bindingIPv4: "0.0.0.0"
+            bindingIPv4: 0.0.0.0
             registerIPv4: nrf
           DefaultPlmnId:
             mcc: "208"
@@ -607,17 +602,17 @@ config:
           enableNrfCaching: false
           debugProfilePort: 5001
           kafkaInfo:
-            brokerUri: "kafka-headless"
+            brokerUri: kafka-headless
             brokerPort: 9092
-            topicName: "sdcore-data-source-smf"
+            topicName: sdcore-data-source-smf
           pfcp:
-             addr: "POD_IP"
+            addr: POD_IP
           smfName: SMF
           nrfUri: http://nrf:29510
           webuiUri: webui:9876
           sbi:
             scheme: http
-            bindingIPv4: "0.0.0.0"
+            bindingIPv4: 0.0.0.0
             registerIPv4: smf
             tls:
               key: gofree5gc/support/TLS/smf.key
@@ -627,11 +622,11 @@ config:
             - nsmf-event-exposure
           snssaiInfos:
             - dnnInfos:
-              - dnn: "internet"
-                dns: # the IP address of DNS
-                   ipv4: "8.8.8.8"
-                   ipv6: "2001:4860:4860::8888"
-                ueSubnet: 172.250.0.0/16 # should be CIDR type
+                - dnn: internet
+                  dns: # the IP address of DNS
+                    ipv4: 8.8.8.8
+                    ipv6: 2001:4860:4860::8888
+                  ueSubnet: 172.250.0.0/16 # should be CIDR type
               sNssai:
                 sd: "010203"
                 sst: 1
@@ -647,7 +642,7 @@ config:
                       sst: 1 # Slice/Service Type (uinteger, range: 0~255)
                       sd: "010203" # Slice Differentiator (3 bytes hex string, range: 000000~FFFFFF)
                     dnnUpfInfoList: # DNN information list for this S-NSSAI
-                      - dnn: "internet"
+                      - dnn: internet
                     plmnId:
                       mcc: "208"
                       mnc: "93"
@@ -655,7 +650,7 @@ config:
                       sst: 1 # Slice/Service Type (uinteger, range: 0~255)
                       sd: "112233" # Slice Differentiator (3 bytes hex string, range: 000000~FFFFFF)
                     dnnUpfInfoList: # DNN information list for this S-NSSAI
-                      - dnn: "internet"
+                      - dnn: internet
                     plmnId:
                       mcc: "208"
                       mnc: "93"
@@ -664,7 +659,6 @@ config:
                     endpoints: # the IP address of this N3/N9 interface on this UPF
                       - upf
                     networkInstance: internet # Data Network Name (DNN)
-
             links:
               - A: gNB1
                 B: UPF
@@ -687,7 +681,7 @@ config:
           webuiUri: webui:9876
           sbi:
             scheme: http
-            bindingIPv4: "0.0.0.0"
+            bindingIPv4: 0.0.0.0
             registerIPv4: ausf
           serviceNameList:
             - nausf-auth
@@ -700,6 +694,8 @@ config:
     serviceType: ClusterIP
     prometheus:
       port: 9089
+    apiEndpoint:
+      port: 9301
     cfgFiles:
       metricscfg.conf:
         configuration:
@@ -709,13 +705,13 @@ config:
                 topicGroup: analytics
                 topicName: sdcore-data-source-amf
               urls:
-                - uri: "kafka-headless"
+                - uri: kafka-headless
                   port: 9092
             - topic:
                 topicGroup: analytics
                 topicName: sdcore-data-source-smf
               urls:
-                - uri: "kafka-headless"
+                - uri: kafka-headless
                   port: 9092
           prometheusServer:
             addr: POD_IP
@@ -727,20 +723,19 @@ config:
             addr: POD_IP
             port: 5001
           onosApiServer:
-            addr: "onosapp"
+            addr: onosapp
             port: 9301
           rocEndPoint:
-            addr: "aether-roc-umbrella-aether-roc-gui-v2-1-external.aether-roc.svc"
+            addr: aether-roc-umbrella-aether-roc-gui-v2-1-external.aether-roc.svc
             port: 80
           metricFuncEndPoint:
-            addr: "metricfunc.omec.svc"
+            addr: metricfunc.omec.svc
             port: 5001
         info:
           description: Metrics initial local configuration
           version: 1.0.0
         logger:
           level: info
-
   upfadapter:
     deploy: false
     serviceType: ClusterIP
@@ -758,4 +753,3 @@ config:
           description: UPF Adapter initial local configuration
         logger:
           level: info
-
