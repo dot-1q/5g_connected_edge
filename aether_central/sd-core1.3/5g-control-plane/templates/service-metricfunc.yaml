@@ -25,7 +25,7 @@ spec:
     nodePort: {{ .Values.config.metricfunc.prometheus.nodePort }}
 {{- end }}
 {{- end }}
-  - name: apiEndpoint
+  - name: api-endpoint
     port: {{ .Values.config.metricfunc.apiEndpoint.port }}
     protocol: TCP
 {{- end }}
