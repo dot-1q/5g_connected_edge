@@ -27,7 +27,7 @@ dependencies:
     #repository: "file://../omec-sub-provision"
     condition: omec-sub-provision.enable
   - name: 5g-control-plane
-    version: 1.0.0
+    version: 1.0.1
     repository: https://charts.aetherproject.org
     # repository: file://5g-control-plane
     condition: 5g-control-plane.enable5G
