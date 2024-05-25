@@ -1,20 +1,24 @@
 # Copyright 2020-present Open Networking Foundation
 #
 # SPDX-License-Identifier: Apache-2.0
+
 images:
+  repository: "" #default docker hub
   tags:
-    bess: "omecproject/upf-epc-bess:master-5786085"
-    pfcpiface: "omecproject/upf-epc-pfcpiface:master-5786085"
-    tools: registry.aetherproject.org/tools/busybox:stable
+    bess: omecproject/upf-epc-bess:rel-1.4.0
+    pfcpiface: omecproject/upf-epc-pfcpiface:rel-1.4.0
+    tools: busybox:stable
   pullPolicy: IfNotPresent
   # Secrets must be manually created in the namespace.
   pullSecrets:
     - name: aether.registry
+
 nodeSelectors:
   enabled: false
   upf:
     label: node-role.aetherproject.org
     value: omec-upf
+
 resources:
   enabled: true
   bess:
@@ -45,6 +49,7 @@ resources:
     limits:
       cpu: 256m
       memory: 128Mi
+
 config:
   coreDump:
     enabled: false
@@ -89,7 +94,7 @@ config:
       #vlan:
       #iface:
     cfgFiles:
-      upf.json:
+      upf.jsonc:
         mode: dpdk
         workers: 1
         max_sessions: 50000
@@ -125,11 +130,14 @@ config:
             pbs: 50000
             burst_duration_ms: 10
             priority: 7
+
 service:
   type: ClusterIP
   #externalIp:
   #annotations:
+
 servicemonitor:
   enabled: false
+
 podsecuritypolicy:
   enabled: false
