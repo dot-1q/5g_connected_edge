@@ -1,0 +1,45 @@
+{{/*
+# Copyright 2020-present Open Networking Foundation
+
+# SPDX-License-Identifier: Apache-2.0
+*/}}
+
+{{- if .Values.config.config4g.deploy }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: config4g
+  labels:
+{{ tuple "config4g" . | include "omec-control-plane.metadata_labels" | indent 4 }}
+spec:
+  type: {{ .Values.config.config4g.serviceType }}
+{{- if .Values.config.config4g.externalIP }}
+  externalIPs:
+    - {{ .Values.config.config4g.externalIP }}
+{{- end }}
+{{- if eq .Values.config.config4g.serviceType "LoadBalancer" }}
+{{- if .Values.config.config4g.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.config.config4g.loadBalancerIP }}
+{{- end }}
+{{- end }}
+  selector:
+{{ tuple "config4g" . | include "omec-control-plane.metadata_labels" | indent 4 }}
+  ports:
+  - name: prometheus-exporter
+    port: {{ .Values.config.config4g.prometheus.port }}
+    protocol: TCP
+{{- if eq .Values.config.config4g.serviceType "NodePort" }}
+{{- if .Values.config.config4g.prometheus.nodePort }}
+    nodePort: {{ .Values.config.config4g.prometheus.nodePort }}
+{{- end }}
+{{- end }}
+  - name: urlport-http
+    port: {{ .Values.config.config4g.urlport.port }}
+    protocol: TCP
+{{- if eq .Values.config.config4g.serviceType "NodePort" }}
+{{- if .Values.config.config4g.urlport.nodePort }}
+    nodePort: {{ .Values.config.config4g.urlport.nodePort }}
+{{- end }}
+{{- end }}
+{{- end }}
