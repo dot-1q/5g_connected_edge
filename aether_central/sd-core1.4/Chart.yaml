@@ -25,7 +25,7 @@ dependencies:
     repository: https://charts.aetherproject.org
     condition: omec-sub-provision.enable
   - name: 5g-control-plane
-    version: 1.0.8
+    version: 1.0.9
     repository: https://charts.aetherproject.org
     condition: 5g-control-plane.enable5G
   - name: bess-upf
