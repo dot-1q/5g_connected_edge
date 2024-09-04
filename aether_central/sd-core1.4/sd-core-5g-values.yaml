@@ -17,10 +17,10 @@ omec-control-plane:
   kafka:
     deploy: true
     persistence:
-      enabled: false
+      enabled: true
     zookeeper:
       persistence:
-        enabled: false
+        enabled: true
   mongodb:
     usePassword: false
     persistence:
