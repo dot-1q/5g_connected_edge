@@ -16,6 +16,11 @@ omec-control-plane:
     # refer above helm chart to add other NF images
   kafka:
     deploy: true
+    persistence:
+      enabled: false
+    zookeeper:
+      persistence:
+        enabled: false
   mongodb:
     usePassword: false
     persistence:
