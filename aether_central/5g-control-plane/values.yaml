@@ -111,7 +111,7 @@ resources:
       cpu: 1
       memory: 1Gi
 kafka:
-  deploy: true
+  deploy: false
   fullnameOverride: kafka
   zookeeper:
     persistence:

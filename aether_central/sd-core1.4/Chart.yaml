@@ -15,30 +15,25 @@ home: https://opennetworking.org/sd-core/
 maintainers:
   - name: SD-Core Support
     email: dev@lists.aetherproject.org
-
 dependencies:
   - name: omec-control-plane
     version: 0.13.0
-    repository: "file://../omec-control-plane"
+    repository: https://charts.aetherproject.org
     condition: omec-control-plane.enable4G
-
   - name: omec-sub-provision
     version: 1.0.1
-    repository: "file://../omec-sub-provision"
+    repository: https://charts.aetherproject.org
     condition: omec-sub-provision.enable
-
   - name: 5g-control-plane
     version: 1.0.12
-    repository: "file://../5g-control-plane"
+    repository: https://charts.aetherproject.org
     condition: 5g-control-plane.enable5G
-
   - name: bess-upf
     version: 1.0.5
-    repository: "file://../bess-upf"
+    repository: https://charts.aetherproject.org
     alias: omec-user-plane
     condition: omec-user-plane.enable
-
   - name: 5g-ran-sim
     version: 1.0.2
-    repository: "file://../5g-ran-sim"
+    repository: https://charts.aetherproject.org
     condition: 5g-ran-sim.enable
