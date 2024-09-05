@@ -126,6 +126,8 @@ omec-sub-provision:
                   - "208990000000005"
                   - "208990000000006"
                   - "208990000000007"
+                  - "208990000000008"
+                  - "208990000000009"
                 ip-domain-name: pool1
                 ip-domain-expanded:
                   dnn: internet
