@@ -1,0 +1,53 @@
+{{/*
+# Copyright 2019-present Open Networking Foundation
+
+# SPDX-License-Identifier: Apache-2.0
+*/}}
+
+{{- if .Values.config.hss.deploy }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hss
+  labels:
+{{ tuple "hss" . | include "omec-control-plane.metadata_labels" | indent 4 }}
+spec:
+  type: {{ .Values.config.hss.serviceType }}
+{{- if .Values.config.hss.externalIP }}
+  externalIPs:
+    - {{ .Values.config.hss.externalIP }}
+{{- end }}
+{{- if eq .Values.config.hss.serviceType "LoadBalancer" }}
+{{- if .Values.config.hss.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.config.hss.loadBalancerIP }}
+{{- end }}
+{{- end }}
+  selector:
+{{ tuple "hss" . | include "omec-control-plane.metadata_labels" | indent 4 }}
+  ports:
+  - name: s6a
+    port: 3868
+    protocol: TCP
+{{- if eq .Values.config.hss.serviceType "NodePort" }}
+{{- if .Values.config.hss.s6a.nodePort }}
+    nodePort: {{ .Values.config.hss.s6a.nodePort }}
+{{- end }}
+{{- end }}
+  - name: config-port
+    port: {{ .Values.config.hss.configPort.port }}
+    protocol: TCP
+{{- if eq .Values.config.hss.serviceType "NodePort" }}
+{{- if .Values.config.hss.configPort.nodePort }}
+    nodePort: {{ .Values.config.hss.configPort.nodePort }}
+{{- end }}
+{{- end }}
+  - name: prometheus-exporter
+    port: {{ .Values.config.hss.prometheus.port }}
+    protocol: TCP
+{{- if eq .Values.config.hss.serviceType "NodePort" }}
+{{- if .Values.config.hss.prometheus.nodePort }}
+    nodePort: {{ .Values.config.hss.prometheus.nodePort }}
+{{- end }}
+{{- end }}
+{{- end }}

@@ -1,0 +1,53 @@
+{{/*
+# Copyright 2020-present Open Networking Foundation
+
+# SPDX-License-Identifier: Apache-2.0
+*/}}
+
+{{- if .Values.config.pcrf.deploy }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pcrf
+  labels:
+{{ tuple "pcrf" . | include "omec-control-plane.metadata_labels" | indent 4 }}
+spec:
+  type: {{ .Values.config.pcrf.serviceType }}
+{{- if .Values.config.pcrf.externalIP }}
+  externalIPs:
+    - {{ .Values.config.pcrf.externalIP }}
+{{- end }}
+{{- if eq .Values.config.pcrf.serviceType "LoadBalancer" }}
+{{- if .Values.config.pcrf.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.config.pcrf.loadBalancerIP }}
+{{- end }}
+{{- end }}
+  selector:
+{{ tuple "pcrf" . | include "omec-control-plane.metadata_labels" | indent 4 }}
+  ports:
+  - name: gx
+    port: 3868
+    protocol: TCP
+{{- if eq .Values.config.pcrf.serviceType "NodePort" }}
+{{- if .Values.config.pcrf.gx.nodePort }}
+    nodePort: {{ .Values.config.pcrf.gx.nodePort }}
+{{- end }}
+{{- end }}
+  - name: prometheus-exporter
+    port: {{ .Values.config.pcrf.prometheus.port }}
+    protocol: TCP
+{{- if eq .Values.config.pcrf.serviceType "NodePort" }}
+{{- if .Values.config.pcrf.prometheus.nodePort }}
+    nodePort: {{ .Values.config.pcrf.prometheus.nodePort }}
+{{- end }}
+{{- end }}
+  - name: config-port
+    port: {{ .Values.config.pcrf.configPort.port }}
+    protocol: TCP
+{{- if eq .Values.config.pcrf.serviceType "NodePort" }}
+{{- if .Values.config.pcrf.configPort.nodePort }}
+    nodePort: {{ .Values.config.pcrf.configPort.nodePort }}
+{{- end }}
+{{- end }}
+{{- end }}

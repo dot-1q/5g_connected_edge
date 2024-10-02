@@ -1,0 +1,61 @@
+{{/*
+# Copyright 2019-present Open Networking Foundation
+
+# SPDX-License-Identifier: Apache-2.0
+*/}}
+
+{{- if .Values.config.spgwc.deploy }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spgwc
+  labels:
+{{ tuple "spgwc" . | include "omec-control-plane.metadata_labels" | indent 4 }}
+spec:
+  type: {{ .Values.config.spgwc.serviceType }}
+{{- if .Values.config.spgwc.externalIP }}
+  externalIPs:
+    - {{ .Values.config.spgwc.externalIP }}
+{{- end }}
+{{- if eq .Values.config.spgwc.serviceType "LoadBalancer" }}
+{{- if .Values.config.spgwc.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.config.spgwc.loadBalancerIP }}
+{{- end }}
+{{- end }}
+  selector:
+{{ tuple "spgwc" . | include "omec-control-plane.metadata_labels" | indent 4 }}
+  ports:
+  - name: s11
+    port: {{ .Values.config.spgwc.s11.port }}
+    protocol: UDP
+{{- if eq .Values.config.spgwc.serviceType "NodePort" }}
+{{- if .Values.config.spgwc.s11.nodePort }}
+    nodePort: {{ .Values.config.spgwc.s11.nodePort }}
+{{- end }}
+{{- end }}
+  - name: pfcp
+    port: {{ .Values.config.spgwc.n4.port }}
+    protocol: UDP
+{{- if eq .Values.config.spgwc.serviceType "NodePort" }}
+{{- if .Values.config.spgwc.n4.nodePort }}
+    nodePort: {{ .Values.config.spgwc.n4.nodePort }}
+{{- end }}
+{{- end }}
+  - name: prometheus-exporter
+    port: {{ .Values.config.spgwc.prometheus.port }}
+    protocol: TCP
+{{- if eq .Values.config.spgwc.serviceType "NodePort" }}
+{{- if .Values.config.spgwc.prometheus.nodePort }}
+    nodePort: {{ .Values.config.spgwc.prometheus.nodePort }}
+{{- end }}
+{{- end }}
+  - name: rest
+    port: {{ .Values.config.spgwc.rest.port }}
+    protocol: TCP
+{{- if eq .Values.config.spgwc.serviceType "NodePort" }}
+{{- if .Values.config.spgwc.rest.nodePort }}
+    nodePort: {{ .Values.config.spgwc.rest.nodePort }}
+{{- end }}
+{{- end }}
+{{- end }}
