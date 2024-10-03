@@ -61,4 +61,4 @@ config:
           n3_bps: 10000000000 # 10Gbps
           n3_burst_bytes: 12500000 # 10ms * 10Gbps
 servicemonitor:
-  enabled: true
+  enabled: false
