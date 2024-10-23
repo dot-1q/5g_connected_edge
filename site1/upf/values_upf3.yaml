@@ -56,9 +56,9 @@ config:
         slice_rate_limit_config: # Slice-level rate limiting (also controlled by ROC)
           # Uplink
           n6_bps: 10000000000 # 10Gbps
-          n6_burst_bytes: 12500000 # 10ms * 10Gbps
+          n6_burst_bytes: 2000000 # 10ms * 10Gbps
           # Downlink
           n3_bps: 10000000000 # 10Gbps
-          n3_burst_bytes: 12500000 # 10ms * 10Gbps
+          n3_burst_bytes: 2000000 # 10ms * 10Gbps
 servicemonitor:
   enabled: true
